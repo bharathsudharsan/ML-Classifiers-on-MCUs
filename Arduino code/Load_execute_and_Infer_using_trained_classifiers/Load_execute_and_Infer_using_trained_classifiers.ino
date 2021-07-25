@@ -1,9 +1,12 @@
+  //#include<SdFat.h>  // required
+//#include <SdFatUtil.h>
+
 //#include "RF_Iris.h"
 // or
-#include "DT_Iris.h"
+//#include "DT_Iris.h"
 //and uncomment
-float irisSample[4] = {6.2, 2.8, 4.8, 1.8};
-#include "Iris_flowers_test.h"
+//float irisSample[4] = {6.2, 2.8, 4.8, 1.8};
+//#include "Iris_flowers_test.h"
 
 //*************************************************************************************************
 
@@ -56,22 +59,25 @@ float irisSample[4] = {6.2, 2.8, 4.8, 1.8};
 
 //#include "DT_Titanic.h"
 // or
-//#include "RF_Titanic.h"
+#include "RF_Titanic.h"
 //and uncomment
-//float TitanicSample[6] = {0, 1, 1, 12, 6, 4};
+float TitanicSample[6] = {0, 1, 1, 12, 6, 4};
 //#include "Titanic_test.h"
 
 //*************************************************************************************************
 
 //Uncomment to load and execute the required type of trained classifier
 
-Eloquent::ML::Port::DecisionTree clf;
-//Eloquent::ML::Port::RandomForest clf;
+//Eloquent::ML::Port::DecisionTree clf;
+Eloquent::ML::Port::RandomForest clf;
 
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("Begin"); }
+//    Serial.println("Begin"); 
+//    PgmPrint("Free RAM: ");
+//    Serial.println(FreeRam());
+}
 
 void loop() {
     int temp1, temp2 = 0;
@@ -80,13 +86,13 @@ void loop() {
        
 // Uncomment the data for which you want to find the unit inference time 
 Serial.print("The unit inference result is:");
-    Serial.println(clf.predict(irisSample));
+//    Serial.println(clf.predict(irisSample));
 //    Serial.println(clf.predict(HeartSample));
 //    Serial.println(clf.predict(CancerSample));
 //    Serial.println(clf.predict(DigitsSample));
 //    Serial.println(clf.predict(BanknoteSample));
 //    Serial.println(clf.predict(SurvivalSample));
-//    Serial.println(clf.predict(TitanicSample));
+    Serial.println(clf.predict(TitanicSample));
 
     Serial.print("It took ");
     temp1 = millis() - start;
@@ -94,26 +100,28 @@ Serial.print("The unit inference result is:");
     Serial.print("ms to perform unit inference");
     Serial.println();
     delay(1000); 
- Serial.print("The Predicted values are: ");
-    int start1 = millis();
 
-    for (int i = 0; i < DATASET_SIZE; i++) 
-    {
-        Serial.print(clf.predict(X[i])); 
-        }
-    
-    Serial.println("");
-    Serial.print("It took ");
-    temp2 = millis() - start1;
-    Serial.print(temp2);
-    Serial.print("ms to infer for ");
-    Serial.print(DATASET_SIZE);
-    Serial.print(" samples");
-    Serial.println();
-    
-    Serial.println("");
-    Serial.println("");
-    delay(1000); 
+// 
+   
+// Serial.print("The Predicted values are: ");
+//    int start1 = millis();
+//    for (int i = 0; i < DATASET_SIZE; i++) 
+//    {
+//        Serial.print(clf.predict(X[i])); 
+//        }
+//    
+//    Serial.println("");
+//    Serial.print("It took ");
+//    temp2 = millis() - start1;
+//    Serial.print(temp2);
+//    Serial.print("ms to infer for ");
+//    Serial.print(DATASET_SIZE);
+//    Serial.print(" samples");
+//    Serial.println();
+//    
+//    Serial.println("");
+//    Serial.println("");
+//    delay(1000); 
 
 }   
       
